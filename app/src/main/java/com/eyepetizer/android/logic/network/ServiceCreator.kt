@@ -17,6 +17,8 @@
 package com.eyepetizer.android.logic.network
 
 import android.os.Build
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.eyepetizer.android.EyepetizerApplication
 import com.eyepetizer.android.extension.logV
 import com.eyepetizer.android.extension.screenPixel
 import com.eyepetizer.android.ui.common.callback.GsonTypeAdapterFactory
@@ -43,6 +45,7 @@ object ServiceCreator {
     const val BASE_URL = "http://baobab.kaiyanapp.com/"
 
     val httpClient = OkHttpClient.Builder()
+        .addInterceptor(ChuckerInterceptor(EyepetizerApplication.context))
         .addInterceptor(LoggingInterceptor())
         .addInterceptor(HeaderInterceptor())
         .addInterceptor(BasicParamsInterceptor())
